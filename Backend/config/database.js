@@ -15,7 +15,7 @@ function connectionCheck(){
   })
 }
 
-function query(sqlQry,res){
+function queryGet(sqlQry,res){
   connection.query(sqlQry,function (err,results,fields) {
     if(err){
       res.json(err)
@@ -28,8 +28,19 @@ function query(sqlQry,res){
 
 function queryFunction(sqlQry, cb) {
   connection.query(sqlQry, cb)
+}
 
+function query(sqlQry,res){
+  connection.query(sqlQry,function (err,results,fields) {
+    if(err){
+      return err
+    }else{
+      return results
+
+    }
+  })
 }
 
 
-module.exports = {connectionCheck,query,queryFunction}
+module.exports = {connectionCheck,queryGet,
+                  query,queryFunction}
