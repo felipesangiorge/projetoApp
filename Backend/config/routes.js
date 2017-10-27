@@ -19,7 +19,7 @@ module.exports = function (server) {
   //TASKLIST_PUT
   router.put('/taskList', (req,res,next) =>{
 
-      var obj = {idUserTaskList:req.body.cod_id_user_tasklist,
+      var obj = { idUserTaskList:req.body.cod_id_user_tasklist,
                   taskListUserName:req.body.des_nom_user_tasklist,
                   taskListName:req.body.des_nom_tasklist,
                   taskListType:req.body.des_type_tasklist,
@@ -36,6 +36,31 @@ module.exports = function (server) {
                         }
                    })
   })
+
+// TASKLIST_POST
+        router.post('/taskList/:id?',(req,res) =>{
+          console.log(req.body.des_nom_tasklist)
+
+          if(req.params.id) id=parseInt(req.params.id)
+          
+          var obj={tasklistId:id,
+                  taskListName:req.body.des_nom_tasklist,
+                  taskListType:req.body.des_type_tasklist,
+                  taskListText:req.body.des_tasklist,
+                  date:req.body.des_date}
+          //console.log(obj)
+          taskList.verifyTaskListById(obj.tasklistId,function (err, rows) {
+            if(rows.length>0){
+
+                taskList.updateTaskListByParams(obj,res)
+                res.send({res:'Lista alterada com sucesso'})
+            }else{
+                res.send({res:'Lista não cadastrada'})
+            }
+          })
+
+        })
+
 //END_TASKLIST
 
 //USER

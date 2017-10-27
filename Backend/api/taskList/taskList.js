@@ -14,6 +14,10 @@ function verifyTaskList(idUserTaskList,taskListName,cb){
   WHERE cod_id_user_tasklist = ${idUserTaskList} AND des_nom_tasklist like "${taskListName}"`,cb)
 }
 
+function verifyTaskListById(id,cb){
+  return con.queryFunction(`SELECT * FROM TB_tasklist WHERE cod_idtasklist = ${id}`,cb)
+}
+
 function setTaskListByParams(req,res) {
 
   return con.query(`INSERT INTO db_lifeapp.TB_tasklist (cod_id_user_tasklist,
@@ -31,4 +35,16 @@ function setTaskListByParams(req,res) {
 
 }
 
-module.exports = {getTaskList,getTaskListById,verifyTaskList,setTaskListByParams}
+function updateTaskListByParams(req,res){
+  return con.query(`UPDATE db_lifeapp.tb_tasklist SET des_nom_tasklist='${req.taskListName}',
+                                                  des_type_tasklist='${req.taskListType}',
+                                                  des_tasklist='${req.taskListText}',
+                                                  des_date='${req.date}'
+
+
+                                WHERE cod_idtasklist = ${req.tasklistId}`)
+}
+
+module.exports = {getTaskList,getTaskListById,
+                  verifyTaskList,verifyTaskListById,
+                  setTaskListByParams,updateTaskListByParams}
