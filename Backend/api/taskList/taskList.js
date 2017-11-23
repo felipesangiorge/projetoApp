@@ -5,6 +5,10 @@ function getTaskList(req,res){
   return con.queryGet('SELECT * FROM TB_TASKLIST',res)
 }
 
+function getTaskListCount(req,res){
+  return con.queryGet('SELECT COUNT(cod_idtasklist) AS idTasklist FROM tb_tasklist',res)
+}
+
 function getTaskListById(id,res){
     return con.queryGet(`SELECT * FROM TB_TASKLIST WHERE COD_ID_USER_TASKLIST like ${id}`,res)
 }
@@ -45,6 +49,6 @@ function updateTaskListByParams(req,res){
                                 WHERE cod_idtasklist = ${req.tasklistId}`)
 }
 
-module.exports = {getTaskList,getTaskListById,
+module.exports = {getTaskList,getTaskListById,getTaskListCount,
                   verifyTaskList,verifyTaskListById,
                   setTaskListByParams,updateTaskListByParams}

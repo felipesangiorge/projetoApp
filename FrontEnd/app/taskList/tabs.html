@@ -1,0 +1,39 @@
+<content-header name="TaskList" small="Versão 1.0"></content-header>
+
+<section class="content">
+  <div class="nav-tabs-custom" ng-controller="TaskListCtrl as taskCtrl">
+    <ul class="nav nav-tabs">
+      <li ng-if="taskCtrl.tabList" ng-class="{active:taskCtrl.tabList}">
+        <a href data-target="#tablist" data-toggle="tab">
+          <i class="fa fa-bars"></i> Lista
+        </a>
+      </li>
+      <li ng-if="taskCtrl.tabCreate">
+        <a href data-target="#tabCreate" data-toggle="tab">
+          <i class="fa fa-plus"></i> Incluir
+        </a>
+      </li>
+      <li ng-if="taskCtrl.tabUpdate" ng-class="{active:taskCtrl.tabUpdate}">
+        <a href data-target="#tabUpdate" data-toggle="tab">
+          <i class="fa fa-pencil"></i> Alterar
+        </a>
+      </li>
+      <li ng-if="taskCtrl.tabDelete" ng-class="{active:taskCtrl.tabDelete}">
+        <a href data-target="#tabDelete" data-toggle="tab">
+          <i class="fa fa-trash-o"></i> Excluir
+        </a>
+      </li>
+    </ul>
+    <div class="tab-content">
+      <div class="tab-pane" id="tablist" ng-include="'taskList/list.html'"
+      ng-if="taskCtrl.tabList" ng-class="{active:taskCtrl.tabList}"></div>
+      <div class="tab-pane" id="tabCreate" ng-include="'taskList/form.html'"
+      ng-if="taskCtrl.tabCreate"></div>
+      <div class="tab-pane" id="tabUpdate" ng-include="'taskList/form.html'"
+      ng-if="taskCtrl.tabUpdate" ng-class="{active:taskCtrl.tabUpdate}"></div>
+      <div class="tab-pane" id="tabDelete" ng-include="'taskList/form.html'"
+      ng-if="taskCtrl.tabDelete" ng-class="{active:taskCtrl.tabDelete}"></div>
+
+    </div>
+  </div>
+</section>

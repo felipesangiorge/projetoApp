@@ -11,13 +11,15 @@ module.exports = function (server) {
   //TASKLIST_GET
   router.route('/taskList').get(taskList.getTaskList)
 
+  router.route('/taskList/count').get(taskList.getTaskListCount)
+
   router.get('/taskList/:id?',(req,res) =>{
     if(req.params.id) id = parseInt(req.params.id)
     return taskList.getTaskListById(id,res)
   })
 
-  //TASKLIST_PUT
-  router.put('/taskList', (req,res,next) =>{
+  //TASKLIST_POST
+  router.post('/taskList', (req,res,next) =>{
 
       var obj = { idUserTaskList:req.body.cod_id_user_tasklist,
                   taskListUserName:req.body.des_nom_user_tasklist,
@@ -37,12 +39,12 @@ module.exports = function (server) {
                    })
   })
 
-// TASKLIST_POST
-        router.post('/taskList/:id?',(req,res) =>{
+// TASKLIST_PUT
+        router.put('/taskList/:id?',(req,res) =>{
           console.log(req.body.des_nom_tasklist)
 
           if(req.params.id) id=parseInt(req.params.id)
-          
+
           var obj={tasklistId:id,
                   taskListName:req.body.des_nom_tasklist,
                   taskListType:req.body.des_type_tasklist,

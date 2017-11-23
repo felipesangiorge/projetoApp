@@ -1,11 +1,11 @@
 const gulp = require('gulp')
 const util = require('gulp-util')
 
-require('.gulpTasks/app')
-require('.gulpTasks/deps')
-require('.gulpTask/server')
+require('./gulpTasks/app')
+require('./gulpTasks/deps')
+require('./gulpTasks/server')
 
-gulp.tasl('default',function () {
+gulp.task('default',function () {
   if(util.env.production){
     gulp.start('deps','app')
   }else{

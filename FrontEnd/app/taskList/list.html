@@ -1,0 +1,34 @@
+<div class="box-body">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Nome Usuário</th>
+        <th>Lista de Tarefas</th>
+        <th>Tipo da Lista </th>
+        <th>Descrição</th>
+        <th>Data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="TaskList in taskCtrl.TaskList">
+        <td>{{:: TaskList.des_nom_user_tasklist}}</td>
+        <td>{{:: TaskList.des_nom_tasklist}}</td>
+        <td>{{:: TaskList.des_type_tasklist}}</td>
+        <td>{{:: TaskList.des_tasklist}}</td>
+        <td>{{:: TaskList.des_date}}</td>
+          <td class="table-actions">
+
+            <button class="btn btn-warning"
+            ng-click="taskCtrl.showTabUpdate(TaskList)"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-danger"
+            ng-click="taskCtrl.showTabDelete(TaskList)"><i class="fa fa-trash-o"></i></button>
+          </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="box-footer clearfix">
+    <paginator url="/#!/taskList" pages="{{TaskListCtrl.pages}}"></paginator>
+  </div>
+
+</div>
