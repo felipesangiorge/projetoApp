@@ -49,6 +49,10 @@ function updateTaskListByParams(req,res){
                                 WHERE cod_idtasklist = ${req.tasklistId}`)
 }
 
+function deleteTaskListByParams(req,res){
+  return con.query(`DELETE FROM tb_tasklist where cod_idtasklist = ${req.idTasklist}`)
+}
+
 module.exports = {getTaskList,getTaskListById,getTaskListCount,
                   verifyTaskList,verifyTaskListById,
-                  setTaskListByParams,updateTaskListByParams}
+                  setTaskListByParams,updateTaskListByParams,deleteTaskListByParams}

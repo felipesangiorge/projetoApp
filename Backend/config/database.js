@@ -33,11 +33,11 @@ function queryFunction(sqlQry, cb) {
 function query(sqlQry,res){
   connection.query(sqlQry,function (err,results,fields) {
     if(err){
-        console.log(err)
+        
       return err
 
     }else{
-      console.log(results)
+
       return results
 
     }

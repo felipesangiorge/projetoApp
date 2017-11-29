@@ -28,6 +28,8 @@ module.exports = function (server) {
                   taskListText:req.body.des_tasklist,
                   date:req.body.des_date}
 
+                  console.log(req.body.des_nom_user_tasklist)
+
                   taskList.verifyTaskList(obj.idUserTaskList,obj.taskListName, function(err, rows) {
                        if (rows.length > 0){
                          res.send({res : "Já Existe outra lista cadastrada com esse nome"})
@@ -50,7 +52,7 @@ module.exports = function (server) {
                   taskListType:req.body.des_type_tasklist,
                   taskListText:req.body.des_tasklist,
                   date:req.body.des_date}
-          //console.log(obj)
+
           taskList.verifyTaskListById(obj.tasklistId,function (err, rows) {
             if(rows.length>0){
 
@@ -62,6 +64,23 @@ module.exports = function (server) {
           })
 
         })
+
+//TASKLIST_DELETE
+
+router.delete('/taskList/:id?',(req,res) =>{
+
+      if(req.params.id) id=parseInt(req.params.id)
+      var obj = {idTasklist :id}
+
+          taskList.verifyTaskListById(obj.idTasklist,function(err, rows) {
+             if(rows.length > 0){
+               taskList.deleteTaskListByParams(obj,res)
+                 res.send({res: "Lista deletada com sucesso"})
+             }else{
+                res.send({res: "Lista não cadastrada"})
+             }
+           })
+})
 
 //END_TASKLIST
 
